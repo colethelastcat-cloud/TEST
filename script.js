@@ -1,3 +1,5 @@
+import { getOpenAISolution } from './api/openai.js';
+
 const contentInput = document.getElementById('contentInput');
 const charCount = document.getElementById('charCount');
 const clearButton = document.getElementById('clearButton');
@@ -47,42 +49,9 @@ findSolutionButton.addEventListener('click', async () => {
     answerCard.classList.add('hidden');
     loadingSpinner.classList.remove('hidden');
 
-    const apiKey = "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";
-    const apiUrl = "https://api.openai.com/v1/chat/completions";
-    const userInput = contentInput.value;
-
     try {
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${apiKey}`
-            },
-            body: JSON.stringify({
-                model: "gpt-3.5-turbo",
-                messages: [
-                    {
-                        role: "system",
-                        content: "You are a helpful assistant that provides concise solutions."
-                    },
-                    {
-                        role: "user",
-                        content: userInput
-                    }
-                ]
-            })
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(`API Error: ${response.status} - ${errorData.error.message}`);
-        }
-
-        const data = await response.json();
-        const solutionText = data.choices[0].message.content;
-
+        const solutionText = await getOpenAISolution(contentInput.value);
         answerText.textContent = solutionText;
-
     } catch (error) {
         console.error("Failed to fetch solution:", error);
         answerText.innerHTML = `<p class="text-red-400">Sorry, something went wrong while fetching the solution.</p><p class="text-xs text-gray-500 mt-2">${error.message}</p>`;
