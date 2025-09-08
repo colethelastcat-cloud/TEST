@@ -1,6 +1,6 @@
 export async function getOpenAISolution(userInput, imageBase64) {
-    // NOTE: If this key still fails, you MUST generate a new one from the OpenAI website.
-    const apiKey = "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";
+    // NOTE: This is the newest key provided.
+    const apiKey = "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";
     const apiUrl = "https://api.openai.com/v1/chat/completions";
 
     // Build the content array for the API request
