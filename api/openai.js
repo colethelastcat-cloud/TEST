@@ -1,6 +1,6 @@
 export async function getOpenAISolution(userInput) {
     // IMPORTANT: Paste your real OpenAI API Key here.
-    const apiKey = "YOUR_REAL_OPENAI_API_KEY_GOES_HERE";
+    const apiKey = "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";
     
     // Do not change this URL.
     const apiUrl = "https://api.openai.com/v1/chat/completions";
@@ -38,3 +38,4 @@ export async function getOpenAISolution(userInput) {
     const data = await response.json();
     return data.choices[0].message.content;
 }
+
