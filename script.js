@@ -47,7 +47,7 @@ findSolutionButton.addEventListener('click', async () => {
     answerCard.classList.add('hidden');
     loadingSpinner.classList.remove('hidden');
 
-    const apiKey = "YOUR_OPENAI_API_KEY_HERE";
+    const apiKey = "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";
     const apiUrl = "https://api.openai.com/v1/chat/completions";
     const userInput = contentInput.value;
 
